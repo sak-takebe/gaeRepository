@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<servlet>
+		<servlet-name>GAE_sample</servlet-name>
+		<servlet-class>aaa.GAE_sampleServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GAE_sample</servlet-name>
+		<url-pattern>/gae_sample</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>FileSelect</servlet-name>
+		<servlet-class>aaa.FileSelectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FileSelect</servlet-name>
+		<url-pattern>/FileSelect</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Upload</servlet-name>
+		<servlet-class>aaa.UploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Upload</servlet-name>
+		<url-pattern>/Upload</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ShowUploadedFiles</servlet-name>
+		<servlet-class>aaa.ShowUploadedFiles</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShowUploadedFiles</servlet-name>
+		<url-pattern>/ShowUploadedFiles</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CreateUserid</servlet-name>
+		<servlet-class>aaa.CreateUserid</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreateUserid</servlet-name>
+		<url-pattern>/CreateUserid</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>IsExistUser</servlet-name>
+		<servlet-class>aaa.IsExistUser</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IsExistUser</servlet-name>
+		<url-pattern>/IsExistUser</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>RegistUserInfo</servlet-name>
+		<servlet-class>aaa.RegistUserInfo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegistUserInfo</servlet-name>
+		<url-pattern>/RegistUserInfo</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>aaa.Login</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+
+</web-app>
