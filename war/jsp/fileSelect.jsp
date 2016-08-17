@@ -24,7 +24,7 @@ img {
 </style>
 <!-- javascript -->
 <script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="dropzone-master/dist/dropzone.js"></script>
 <script src="prettyPhoto_compressed_3.1.6/js/jquery.prettyPhoto.js"></script>
 <script>
