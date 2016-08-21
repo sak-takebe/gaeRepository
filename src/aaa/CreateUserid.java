@@ -16,10 +16,6 @@ public class CreateUserid extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse res)
 	    throws IOException, ServletException {
 
-	// ユーザIDの採番処理を行うサーブレット
-	// String parameter1 = req.getParameter("");
-	// String parameter2 = req.getParameter("");
-
 	String responseJson = "{\"userid\":\"" + UUID.randomUUID().toString()
 		+ "\"}";
 
