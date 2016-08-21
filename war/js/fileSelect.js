@@ -18,7 +18,7 @@ $(function(){
 	$("a[rel^='prettyPhoto']").prettyPhoto({
 		show_title : false,
 		deeplinking : false,
-		allow_resize : true,
+		allow_resize : true
 	});
 
 	// アップロードボタン押下時

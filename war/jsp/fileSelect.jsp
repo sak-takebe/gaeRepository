@@ -49,7 +49,10 @@ img {
 	<br>
 	<input type="button" value="upload" />
 	<br><br>
-	<div id="dispzone"></div>
+	<div class="gallery">
+		<ul id="dispzone">
+		</ul>
+	</div>
 	<br>
 	<button onClick="getFiles()">show images</button>
 </body>

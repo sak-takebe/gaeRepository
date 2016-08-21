@@ -54,6 +54,8 @@ public class ShowUploadedFiles extends HttpServlet {
 
 	    StringBuilder buil = new StringBuilder();
 	    for (String fairuMei : fileInfoBean.getFairuMei()) {
+		// liタグ作成
+		buil.append("<li style='list-style:none; display:inline-block; margin:1em'>");
 		// aタグ作成
 		buil.append("<a href='");
 		buil.append("https://storage.googleapis.com/smple_bucket/");
@@ -81,6 +83,7 @@ public class ShowUploadedFiles extends HttpServlet {
 		buil.append(" ");
 		buil.append("width='120' height='120'/>");
 		buil.append("</a>");
+		buil.append("</li>");
 	    }
 	    // トークン生成
 	    token = UUID.randomUUID().toString();
