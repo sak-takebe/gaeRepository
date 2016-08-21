@@ -12,20 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings({ "serial" })
 public class CreateUserid extends HttpServlet {
 
-	@Override
-	public void doPost(HttpServletRequest req, HttpServletResponse res)
-			throws IOException, ServletException {
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse res)
+	    throws IOException, ServletException {
 
-		// ユーザIDの採番処理を行うサーブレット
-		String parameter1 = req.getParameter("");
-		String parameter2 = req.getParameter("");
+	// ユーザIDの採番処理を行うサーブレット
+	// String parameter1 = req.getParameter("");
+	// String parameter2 = req.getParameter("");
 
-		String responseJson = "{\"userid\":\"" + UUID.randomUUID().toString() + "\"}";
+	String responseJson = "{\"userid\":\"" + UUID.randomUUID().toString()
+		+ "\"}";
 
-		res.setContentType("application/json;charset=UTF-8");
+	res.setContentType("application/json;charset=UTF-8");
 
-		PrintWriter out = res.getWriter();
-		out.write(responseJson);
+	PrintWriter out = res.getWriter();
+	out.write(responseJson);
 
-	}
+    }
 }
