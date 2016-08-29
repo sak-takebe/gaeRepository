@@ -87,7 +87,7 @@ function getFiles() {
 		if (obj['image'] == "") {
 			document.getElementById('dispzone').innerHTML = "There is no uploaded files ...";
 		} else {
-			document.getElementById('dispzone').innerHTML = obj['image'];
+			document.getElementsByClassName('gallery')[0].innerHTML = obj['image'];
 		}
 	} else {
 		alert("please sign in or sign up.");

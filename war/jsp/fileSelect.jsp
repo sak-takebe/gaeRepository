@@ -47,11 +47,9 @@ img {
 	<input type="hidden" name="token" value="" size="36">
 	</form>
 	<br>
-	<input type="button" value="upload" />
+	<input type="button" value="upload"/>
 	<br><br>
 	<div class="gallery">
-		<ul id="dispzone">
-		</ul>
 	</div>
 	<br>
 	<button onClick="getFiles()">show images</button>

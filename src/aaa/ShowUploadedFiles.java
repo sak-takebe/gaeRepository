@@ -53,6 +53,7 @@ public class ShowUploadedFiles extends HttpServlet {
 	    fileInfoBean.setDirectory(dir);
 
 	    StringBuilder buil = new StringBuilder();
+	    buil.append("<ul>");
 	    for (String fairuMei : fileInfoBean.getFairuMei()) {
 		// liタグ作成
 		buil.append("<li style='list-style:none; display:inline-block; margin:1em'>");
@@ -85,6 +86,7 @@ public class ShowUploadedFiles extends HttpServlet {
 		buil.append("</a>");
 		buil.append("</li>");
 	    }
+	    buil.append("</ul>");
 	    // トークン生成
 	    token = UUID.randomUUID().toString();
 	    if (Util.updateToken(dir, token)) {
