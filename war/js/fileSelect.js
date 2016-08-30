@@ -15,11 +15,7 @@ $(function(){
 	});
 
 	// prettyPhoto.js
-	$("a[rel^='prettyPhoto']").prettyPhoto({
-		show_title : false,
-		deeplinking : false,
-		allow_resize : true
-	});
+	prettyPhoto();
 
 	// アップロードボタン押下時
 	$("input:button").click(function() {
@@ -35,6 +31,15 @@ $(function(){
 		}
 	});
 });
+
+function prettyPhoto() {
+	// prettyPhoto.js
+	$("a[rel^='prettyPhoto']").prettyPhoto({
+		show_title : false,
+		deeplinking : false,
+		allow_resize : true
+	});
+}
 
 function isExistUser() {
 
@@ -84,10 +89,12 @@ function getFiles() {
 	var obj = JSON.parse(_return);
 	if (obj['message'] == "success") {
 		document.forms[0].token.value = obj['token'];
+		var dispzone = document.getElementById('dispzone');
 		if (obj['image'] == "") {
-			document.getElementById('dispzone').innerHTML = "There is no uploaded files ...";
+			dispzone.innerHTML = "There is no uploaded files ...";
 		} else {
-			document.getElementsByClassName('gallery')[0].innerHTML = obj['image'];
+			dispzone.innerHTML = obj['image'];
+			prettyPhoto();
 		}
 	} else {
 		alert("please sign in or sign up.");
