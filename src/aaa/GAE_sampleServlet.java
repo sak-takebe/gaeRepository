@@ -14,6 +14,6 @@ public class GAE_sampleServlet extends HttpServlet {
 			throws IOException, ServletException {
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/jsp/top.jsp");
-		dispatcher.forward(req,resp);
+		dispatcher.forward(req, resp);
 	}
 }

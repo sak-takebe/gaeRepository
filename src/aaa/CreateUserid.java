@@ -12,17 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 @SuppressWarnings({ "serial" })
 public class CreateUserid extends HttpServlet {
 
-    @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse res)
-	    throws IOException, ServletException {
+	@Override
+	public void doPost(HttpServletRequest req, HttpServletResponse res)
+			throws IOException, ServletException {
 
-	String responseJson = "{\"userid\":\"" + UUID.randomUUID().toString()
-		+ "\"}";
+		String responseJson = "{\"userid\":\"" + UUID.randomUUID().toString()
+				+ "\"}";
 
-	res.setContentType("application/json;charset=UTF-8");
+		res.setContentType("application/json;charset=UTF-8");
 
-	PrintWriter out = res.getWriter();
-	out.write(responseJson);
+		PrintWriter out = res.getWriter();
+		out.write(responseJson);
 
-    }
+	}
 }

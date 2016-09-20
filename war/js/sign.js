@@ -38,7 +38,7 @@ function param_pass_to_openner (up_in) {
 function regist_or_login(transUrl) {
 
 	var params = [document.forms[0].userId.value,
-	              document.forms[0].userPassword.value];
+	document.forms[0].userPassword.value];
 
 	var _return = ajax(transUrl, params);
 	return _return;

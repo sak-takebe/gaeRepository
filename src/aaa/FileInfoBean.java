@@ -2,7 +2,6 @@ package aaa;
 
 import java.util.List;
 
-
 public class FileInfoBean {
 
 	private String directory;

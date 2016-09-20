@@ -66,18 +66,21 @@ public class UploadServlet extends HttpServlet {
 
 			List<GcsFilename> gcsFileNames = new ArrayList<>();
 			List<GcsOutputChannel> gcsWriteChannels = new ArrayList<>();
-			GcsFileOptions options = new GcsFileOptions.Builder().mimeType(
-					"text/tab-separated-values").acl(PUBKIC_READ).build();
+			GcsFileOptions options = new GcsFileOptions.Builder()
+					.mimeType("text/tab-separated-values").acl(PUBKIC_READ)
+					.build();
 
 			if (blobs != null) {
 				for (int i = 0; i < blobs.size(); i++) {
 					blobKeysList.add(blobs.get("file" + "[" + i + "]"));
 					blobInfoList.add(factory.loadBlobInfo(blobKeysList.get(i)
 							.get(0)));
-					filenameArray = spritComma(blobInfoList.get(i).getFilename());
-					gcsFileNames.add(new GcsFilename(BUCKET_NAME +"/" + dir, filenameArray[0]
-							+ "_" + UUID.randomUUID().toString() + "."
-							+ filenameArray[1]));
+					filenameArray = spritComma(blobInfoList.get(i)
+							.getFilename());
+					gcsFileNames.add(new GcsFilename(BUCKET_NAME + "/" + dir,
+							filenameArray[0] + "_"
+									+ UUID.randomUUID().toString() + "."
+									+ filenameArray[1]));
 				}
 			}
 
@@ -88,13 +91,14 @@ public class UploadServlet extends HttpServlet {
 					gcsWriteChannels.add(gcsService.createOrReplace(
 							gcsFileNames.get(i), options));
 					gcsWriteChannels.get(i).write(
-							ByteBuffer.wrap(blobstoreService.fetchData(blobKeysList
-									.get(i).get(0), 0, 1015800)));
+							ByteBuffer.wrap(blobstoreService.fetchData(
+									blobKeysList.get(i).get(0), 0, 1015800)));
 					gcsWriteChannels.get(i).close();
 
 					// [アップロードファイル管理]
 					// ・ファイルID
-					fileIdArray = spritComma(gcsFileNames.get(i).getObjectName());
+					fileIdArray = spritComma(gcsFileNames.get(i)
+							.getObjectName());
 					String fairuId = fileIdArray[0].substring(fileIdArray[0]
 							.length() - 36);
 					// ・ファイル名
@@ -103,8 +107,8 @@ public class UploadServlet extends HttpServlet {
 					long fairuSize = factory.loadBlobInfo(
 							blobKeysList.get(i).get(0)).getSize();
 					// ・ファイル作成日
-					Date creation = factory
-							.loadBlobInfo(blobKeysList.get(i).get(0)).getCreation();
+					Date creation = factory.loadBlobInfo(
+							blobKeysList.get(i).get(0)).getCreation();
 					String fairuSakuseibi = new SimpleDateFormat(DATE_PATTERN)
 							.format(creation);
 					// ・コンテキストタイプ
@@ -128,7 +132,8 @@ public class UploadServlet extends HttpServlet {
 						value.add(fairuContentType);
 						propertyName.add("directory");
 						value.add(dir);
-						boolean indexExisted = Util.indexExisted(key, propertyName, value);
+						boolean indexExisted = Util.indexExisted(key,
+								propertyName, value);
 						if (!indexExisted) {
 							// ユニークな値を特定し登録処理完了のため
 							break;
@@ -138,7 +143,7 @@ public class UploadServlet extends HttpServlet {
 			}
 
 			// 戻り値設定
-			String responseJson = "{\"token\":\"" +  token + "\"}";
+			String responseJson = "{\"token\":\"" + token + "\"}";
 			res.setContentType("application/json;charset=UTF-8");
 			PrintWriter out = res.getWriter();
 			out.write(responseJson);

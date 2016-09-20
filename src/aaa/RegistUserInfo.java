@@ -57,7 +57,8 @@ public class RegistUserInfo extends HttpServlet {
 		String id = userid;
 
 		// 戻り値設定
-		String responseJson = "{\"message\":\"success\", \"userid\":\""+ id + "\", \"token\":\""+ token + "\"}";
+		String responseJson = "{\"message\":\"success\", \"userid\":\"" + id
+				+ "\", \"token\":\"" + token + "\"}";
 		// String responseJson = "{\"return\":\"fail\"}";
 
 		resp.setContentType("application/json;charset=UTF-8");
@@ -65,6 +66,5 @@ public class RegistUserInfo extends HttpServlet {
 		PrintWriter out = resp.getWriter();
 		out.write(responseJson);
 	}
-
 
 }

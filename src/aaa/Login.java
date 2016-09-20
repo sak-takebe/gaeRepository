@@ -35,7 +35,8 @@ public class Login extends HttpServlet {
 			// トークン更新処理
 			if (Util.updateToken(userid, token)) {
 				// 戻り値設定
-				responseJson = "{\"message\":\"success\", \"userid\":\""+ userid + "\", \"token\":\""+ token + "\"}";
+				responseJson = "{\"message\":\"success\", \"userid\":\""
+						+ userid + "\", \"token\":\"" + token + "\"}";
 			} else {
 				//
 				responseJson = "{\"message\":\"failTokenUpdate\"}";
