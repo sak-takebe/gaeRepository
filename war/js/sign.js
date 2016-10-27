@@ -24,7 +24,7 @@ function param_pass_to_openner (up_in) {
 
 		alert("success !");
 		// ユーザIDを親画面に埋め込み
-		window.opener.document.getElementById('memo').innerHTML = "USER ID：" + obj['userid'];
+		window.opener.document.getElementById('statusMessage').innerHTML = "USER ID：" + obj['userid'];
 		// トークンを親画面に埋め込み
 		window.opener.document.forms[0].token.value = obj['token'];
 
@@ -46,7 +46,6 @@ function regist_or_login(transUrl) {
 
 // ajax通信
 function ajax (transUrl, params) {
-
 	return $.ajax({
 		url : transUrl,
 		// async(非同期) : false

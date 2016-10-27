@@ -54,10 +54,12 @@ public class ShowUploadedFiles extends HttpServlet {
 
 			StringBuilder buil = new StringBuilder();
 			for (String fairuMei : fileInfoBean.getFairuMei()) {
-				// liタグ作成
+				// ▽ liタグ▽
 				buil.append("<li style='list-style:none; display:inline-block; margin:1em'>");
-				// aタグ作成
-				buil.append("<a href='");
+				// ▽ aタグ ▽
+				// divタグだとチェックボックスが右上にちゃんと付く。aタグだと右下になる。
+				// buil.append("<div class='image_box'>");
+				buil.append("<a class='image_box' href='");
 				buil.append("https://storage.googleapis.com/smple_bucket/");
 				buil.append(fileInfoBean.getDirectory());
 				buil.append("/");
@@ -70,7 +72,8 @@ public class ShowUploadedFiles extends HttpServlet {
 				buil.append(fairuMei);
 				buil.append("'");
 				buil.append(">");
-				buil.append("<img src='");
+				// ▽ imgタグ ▽
+				buil.append("<img class='thumbnail' src='");
 				buil.append("https://storage.googleapis.com/smple_bucket/");
 				buil.append(fileInfoBean.getDirectory());
 				buil.append("/");
@@ -82,8 +85,17 @@ public class ShowUploadedFiles extends HttpServlet {
 				buil.append("'");
 				buil.append(" ");
 				buil.append("width='120' height='120'/>");
+				// △ imgタグ △
+				// ▽ checkbox ▽
+				buil.append("<input class='checkbox' type='checkbox' value='");
+				buil.append(fairuMei);
+				buil.append("'/>");
+				// △ checkbox △
+				// buil.append("</div>");
 				buil.append("</a>");
+				// △ aタグ △
 				buil.append("</li>");
+				// △ liタグ △
 			}
 			// トークン生成
 			token = UUID.randomUUID().toString();
@@ -95,8 +107,8 @@ public class ShowUploadedFiles extends HttpServlet {
 				responseJson = "{\"message\":\"トークン更新失敗\"}";
 			}
 		} else {
-			responseJson = "{\"message\":\"fail\", \"image\":\"" + "nothing"
-					+ "\"}";
+			// ユーザ認証失敗
+			responseJson = "{\"message\":\"fail\"}";
 		}
 		out.write(responseJson);
 	}

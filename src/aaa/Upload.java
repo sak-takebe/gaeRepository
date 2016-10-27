@@ -29,7 +29,7 @@ import com.google.appengine.tools.cloudstorage.GcsService;
 import com.google.appengine.tools.cloudstorage.GcsServiceFactory;
 
 @SuppressWarnings({ "serial" })
-public class UploadServlet extends HttpServlet {
+public class Upload extends HttpServlet {
 
 	private BlobstoreService blobstoreService = BlobstoreServiceFactory
 			.getBlobstoreService();

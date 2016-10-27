@@ -20,6 +20,25 @@ img {
 	-webkit-border-radius: 15px;
 	border-radius: 15px;
 }
+ul.image_list li a.image_box {
+	/* position：相対位置  画像とチェックボックスを重ねるために指定 */
+	position: relative;
+}
+.image_box .checkbox {
+	/* チェックボックスの位置は絶対位置に指定 */
+	position: absolute;
+	/* チェックボックスは、親要素の右上からの位置 */
+	/* top: 5px; */
+	right: 0.5px;
+	/* チェックボックス拡大 */
+	transform: scale(2);
+}
+.image_box img.thumbnail.checked {
+	/* チェックが入った状態だと、枠が表示 */
+	border: 6px solid blue;
+	/* 線をwidthとheightに含める */
+	box-sizing: border-box;
+}
 -->
 </style>
 <!-- javascript -->
@@ -35,7 +54,7 @@ img {
 		<button onClick="subWindow('html/sign_up.html', 'sign_up')">sign up</button>
 		<br>
 		<br>
-		<a id="memo">&nbsp;&nbsp;* easy to start ！</a>
+		<a id="statusMessage">&nbsp;&nbsp;* easy to start ！</a>
 	</div>
 	<br>
 	<%
@@ -49,10 +68,14 @@ img {
 	<br>
 	<input type="button" value="upload"/>
 	<br><br>
-	<div class="gallery">
-		<ul id="dispzone"></ul>
+	<!-- <div class="gallery"> -->
+	<div>
+		<ul id="dispzone" class="image_list"></ul>
 	</div>
 	<br>
 	<button onClick="getFiles()">show images</button>
+	<button onClick="deleteFiles()">delete images</button>
+	<br>
+	<div id="infoMessage"></div>
 </body>
 </html>
