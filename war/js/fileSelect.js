@@ -85,7 +85,6 @@ function getFiles() {
 		} else {
 			dispzone.innerHTML = obj['image'];
 			// prettyPhoto.jsの呼出
-			// TODO ここで呼ぶのではなく、マウス長押しされたら呼ぶように修正？
 			prettyPhoto();
 			// checkboxイベント付与
 			addCheckboxEvent();
@@ -146,7 +145,6 @@ function addCheckboxEvent () {
 	// バブリングストップ。PreviewDialogを起動しない。
 	e.stopPropagation();
 	var area = $('.checkbox.checked').val();
-	console.log(area);
 	});
 }
 // ajax通信

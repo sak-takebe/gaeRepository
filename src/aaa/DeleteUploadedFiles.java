@@ -1,6 +1,5 @@
 package aaa;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
@@ -30,8 +28,6 @@ public class DeleteUploadedFiles extends HttpServlet {
 	private static Storage storage;
 	private static String BUCKET_NAME = "smple_bucket";
 	private static String APPLICATION_NAME_PROPERTY = "application.name";
-	private static String ACCOUNT_ID_PROPERTY = "account.id";
-	private static String PRIVATE_KEY_PATH_PROPERTY = "private.key.path";
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {
@@ -101,27 +97,24 @@ public class DeleteUploadedFiles extends HttpServlet {
 		if (storage == null) {
 
 			HttpTransport httpTransport = new NetHttpTransport();
-			JsonFactory jsonFactory = new JacksonFactory();
+			JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
 
 			List<String> scopes = new ArrayList<String>();
+			scopes.add(StorageScopes.CLOUD_PLATFORM);
 			scopes.add(StorageScopes.DEVSTORAGE_FULL_CONTROL);
+			scopes.add(StorageScopes.DEVSTORAGE_READ_WRITE);
 
-			Credential credential = new GoogleCredential.Builder()
-					.setTransport(httpTransport)
-					.setJsonFactory(jsonFactory)
-					.setServiceAccountId(
-							getProperties().getProperty(ACCOUNT_ID_PROPERTY))
-					.setServiceAccountPrivateKeyFromP12File(
-							new File(getProperties().getProperty(
-									PRIVATE_KEY_PATH_PROPERTY)))
-					.setServiceAccountScopes(scopes).build();
-
-			storage = new Storage.Builder(httpTransport, jsonFactory,
-					credential).setApplicationName(
-					getProperties().getProperty(APPLICATION_NAME_PROPERTY))
-					.build();
+			GoogleCredential credential = GoogleCredential
+					.getApplicationDefault();
+			if (credential.createScopedRequired()) {
+				credential = credential.createScoped(scopes);
+			}
+			storage = new Storage.Builder(httpTransport, jsonFactory, null)
+					.setHttpRequestInitializer(credential)
+					.setApplicationName(
+							getProperties().getProperty(
+									APPLICATION_NAME_PROPERTY)).build();
 		}
-
 		return storage;
 	}
 
