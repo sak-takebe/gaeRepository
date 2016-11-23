@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
 public class FileSelectServlet extends HttpServlet {
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws IOException, ServletException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException, ServletException {
 
-		RequestDispatcher dispatcher = req
-				.getRequestDispatcher("/jsp/fileSelect.jsp");
-		dispatcher.forward(req, resp);
-	}
+        RequestDispatcher dispatcher = req
+                .getRequestDispatcher("/jsp/fileSelect.jsp");
+        dispatcher.forward(req, resp);
+    }
 }
