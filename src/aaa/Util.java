@@ -15,123 +15,142 @@ import com.google.common.collect.ComputationException;
 
 public class Util {
 
-	private static DatastoreService datastoreService = DatastoreServiceFactory
-			.getDatastoreService();
+    private static DatastoreService datastoreService = DatastoreServiceFactory
+            .getDatastoreService();
 
-	/**
-	 *
-	 * インデックスが存在しているかどうかを判定してDB登録する.
-	 *
-	 * 存在している場合：true 存在していない場合：false(EntityNotFoundException⇒catchしてDB登録登録)
-	 *
-	 */
-	public static boolean indexExisted(Key key, ArrayList<String> propertyName,
-			ArrayList<String> value) {
+    /**
+     *
+     * インデックスが存在しているかどうかを判定してDB登録する.
+     *
+     * 存在している場合：true 存在していない場合：false(EntityNotFoundException catchしてDB登録登録)
+     *
+     */
+    public static boolean indexExisted(Key key, ArrayList<String> propertyName,
+            ArrayList<String> value) {
 
-		Transaction tx = datastoreService.beginTransaction();
+        Transaction tx = datastoreService.beginTransaction();
 
-		try {
-			datastoreService.get(tx, key);
-			tx.rollback();
-			// 既にエントリが存在
-			return true;
-		} catch (EntityNotFoundException e) {
-			// まだエントリが存在しなかったのでput
-			Entity entity = new Entity(key);
-			try {
-				for (int i = 0; i < propertyName.size(); i++) {
-					// propertyName, value
-					entity.setProperty(propertyName.get(i), value.get(i));
-				}
-				// 登録
-				// datastoreService.put(entity);
-				datastoreService.put(tx, entity);
-				tx.commit();
-				// ユニークな値が確保できた
-				return false;
-			} catch (ComputationException e2) {
-				// エントリをgetしてからcommitまでの間に割り込まれた場合は例外
-				if (tx.isActive()) {
-					tx.rollback();
-				}
-				return true;
-			}
-		}
-	}
+        try {
+            datastoreService.get(tx, key);
+            tx.rollback();
+            // 既にエントリが存在
+            return true;
+        } catch (EntityNotFoundException e) {
+            // まだエントリが存在しなかったのでput
+            Entity entity = new Entity(key);
+            try {
+                for (int i = 0; i < propertyName.size(); i++) {
+                    // propertyName, value
+                    entity.setProperty(propertyName.get(i), value.get(i));
+                }
+                // 登録
+                // datastoreService.put(entity);
+                datastoreService.put(tx, entity);
+                tx.commit();
+                // ユニークな値が確保できた
+                return false;
+            } catch (ComputationException e2) {
+                // エントリをgetしてからcommitまでの間に割り込まれた場合は例外
+                if (tx.isActive()) {
+                    tx.rollback();
+                }
+                return true;
+            }
+        }
+    }
 
-	/**
-	 *
-	 * ユーザ認証.
-	 *
-	 */
-	public static String getUserid(String token) {
+    /**
+     *
+     * ファイル情報削除.
+     * @param fileName ファイル名
+     *
+     */
+    public static void deleteFileInfo(String fileName) {
 
-		String db_userid = "";
+        Query query = new Query("FairuJouhou");
 
-		Query query = new Query("UserInfo");
-		query.setFilter(FilterOperator.EQUAL.of("token", token));
-		PreparedQuery pQuery = datastoreService.prepare(query);
+        query.setFilter(FilterOperator.EQUAL.of("fairuMei", fileName));
+        PreparedQuery pQuery = datastoreService.prepare(query);
+        for (Entity entity : pQuery.asIterable()) {
+            // レコード削除
+            // TODO トランザクションを使用する。 delete(Transaction txn, Key... keys);
+            datastoreService.delete(entity.getKey());
+        }
+    }
 
-		for (Entity entity : pQuery.asIterable()) {
-			// ユーザIDを取得
-			db_userid = entity.getProperty("userid").toString();
-		}
+    /**
+     *
+     * ユーザ認証.
+     *
+     */
+    public static String getUserid(String token) {
 
-		if (!db_userid.isEmpty()) {
-			return db_userid;
-		} else {
-			return "";
-		}
-	}
+        String db_userid = "";
 
-	/**
-	 *
-	 * ログイン処理.
-	 *
-	 */
-	public static String[] getLoginInfo(String userid, String password) {
+        Query query = new Query("UserInfo");
+        query.setFilter(FilterOperator.EQUAL.of("token", token));
+        PreparedQuery pQuery = datastoreService.prepare(query);
 
-		String db_userid = "";
-		String db_userpassword = "";
+        for (Entity entity : pQuery.asIterable()) {
+            // ユーザIDを取得
+            db_userid = entity.getProperty("userid").toString();
+        }
 
-		Query query = new Query("UserInfo");
-		query.setFilter(FilterOperator.EQUAL.of("userid", userid));
-		// query.setFilter(FilterOperator.EQUAL.of("userpassword", password));
-		// TODO 複数条件 ログインIDも指定する。
-		// ユーザを検索
-		PreparedQuery pQuery = datastoreService.prepare(query);
+        if (!db_userid.isEmpty()) {
+            return db_userid;
+        } else {
+            return "";
+        }
+    }
 
-		for (Entity entity : pQuery.asIterable()) {
-			db_userid = entity.getProperty("userid").toString();
-			db_userpassword = entity.getProperty("userpassword").toString();
-		}
+    /**
+     *
+     * ログイン処理.
+     *
+     */
+    public static String[] getLoginInfo(String userid, String password) {
 
-		if (!db_userid.isEmpty()) {
-			return new String[] { db_userid, db_userpassword };
-		} else {
-			return null;
-		}
-	}
+        String db_userid = "";
+        String db_userpassword = "";
 
-	/**
-	 *
-	 * トークン更新処理.
-	 *
-	 */
-	public static boolean updateToken(String userid, String token) {
+        Query query = new Query("UserInfo");
+        query.setFilter(FilterOperator.EQUAL.of("userid", userid));
+        // query.setFilter(FilterOperator.EQUAL.of("userpassword", password));
+        // TODO 複数条件 ログインIDも指定する。
+        // ユーザを検索
+        PreparedQuery pQuery = datastoreService.prepare(query);
 
-		Query query = new Query("UserInfo");
-		query.setFilter(FilterOperator.EQUAL.of("userid", userid));
+        for (Entity entity : pQuery.asIterable()) {
+            db_userid = entity.getProperty("userid").toString();
+            db_userpassword = entity.getProperty("userpassword").toString();
+        }
 
-		// ユーザを検索
-		PreparedQuery pQuery = datastoreService.prepare(query);
+        if (!db_userid.isEmpty()) {
+            return new String[] { db_userid, db_userpassword };
+        } else {
+            return null;
+        }
+    }
 
-		for (Entity entity : pQuery.asIterable()) {
-			// ユーザのトークンを更新
-			entity.setProperty("token", token);
-			datastoreService.put(entity);
-			return true;
-		}
-		return false;
-	}
+    /**
+     *
+     * トークン更新処理.
+     *
+     */
+    public static boolean updateToken(String userid, String token) {
+
+        Query query = new Query("UserInfo");
+        query.setFilter(FilterOperator.EQUAL.of("userid", userid));
+
+        // ユーザを検索
+        PreparedQuery pQuery = datastoreService.prepare(query);
+
+        for (Entity entity : pQuery.asIterable()) {
+            // ユーザのトークンを更新
+            entity.setProperty("token", token);
+            datastoreService.put(entity);
+            return true;
+        }
+        return false;
+    }
 }

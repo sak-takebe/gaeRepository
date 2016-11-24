@@ -24,7 +24,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<servlet>
 		<servlet-name>Upload</servlet-name>
-		<servlet-class>aaa.UploadServlet</servlet-class>
+		<servlet-class>aaa.Upload</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Upload</servlet-name>
@@ -74,6 +74,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+
+		<servlet>
+		<servlet-name>Delete</servlet-name>
+		<servlet-class>aaa.DeleteUploadedFiles</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Delete</servlet-name>
+		<url-pattern>/DeleteUploadedFiles</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
