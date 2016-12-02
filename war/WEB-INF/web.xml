@@ -6,7 +6,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	version="2.5">
 	<servlet>
 		<servlet-name>GAE_sample</servlet-name>
-		<servlet-class>aaa.GAE_sampleServlet</servlet-class>
+		<servlet-class>main.java.GAE_sampleServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>GAE_sample</servlet-name>
@@ -15,7 +15,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<servlet>
 		<servlet-name>FileSelect</servlet-name>
-		<servlet-class>aaa.FileSelectServlet</servlet-class>
+		<servlet-class>main.java.FileSelectServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FileSelect</servlet-name>
@@ -24,7 +24,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<servlet>
 		<servlet-name>Upload</servlet-name>
-		<servlet-class>aaa.Upload</servlet-class>
+		<servlet-class>main.java.Upload</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Upload</servlet-name>
@@ -33,7 +33,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<servlet>
 		<servlet-name>ShowUploadedFiles</servlet-name>
-		<servlet-class>aaa.ShowUploadedFiles</servlet-class>
+		<servlet-class>main.java.ShowUploadedFiles</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ShowUploadedFiles</servlet-name>
@@ -42,7 +42,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<servlet>
 		<servlet-name>CreateUserid</servlet-name>
-		<servlet-class>aaa.CreateUserid</servlet-class>
+		<servlet-class>main.java.CreateUserid</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CreateUserid</servlet-name>
@@ -51,7 +51,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<servlet>
 		<servlet-name>IsExistUser</servlet-name>
-		<servlet-class>aaa.IsExistUser</servlet-class>
+		<servlet-class>main.java.IsExistUser</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>IsExistUser</servlet-name>
@@ -60,7 +60,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<servlet>
 		<servlet-name>RegistUserInfo</servlet-name>
-		<servlet-class>aaa.RegistUserInfo</servlet-class>
+		<servlet-class>main.java.RegistUserInfo</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>RegistUserInfo</servlet-name>
@@ -69,7 +69,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 	<servlet>
 		<servlet-name>Login</servlet-name>
-		<servlet-class>aaa.Login</servlet-class>
+		<servlet-class>main.java.Login</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
@@ -78,7 +78,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
 		<servlet>
 		<servlet-name>Delete</servlet-name>
-		<servlet-class>aaa.DeleteUploadedFiles</servlet-class>
+		<servlet-class>main.java.DeleteUploadedFiles</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Delete</servlet-name>
