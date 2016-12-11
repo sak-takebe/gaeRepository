@@ -39,22 +39,22 @@
             /* 線をwidthとheightに含める */
             box-sizing: border-box;
         }
-        #deleteButton {
+        #js-deleteImages {
             display: none;
         }
         -->
         </style>
         <!-- javascript -->
         <script type="text/javascript"
-            src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+            src="https://code.jquery.com/jquery-2.0.0.min.js"></script>
         <script src="dropzone-master/dist/dropzone.js"></script>
         <script src="prettyPhoto_compressed_3.1.6/js/jquery.prettyPhoto.js"></script>
         <script src="/js/fileSelect.js"></script>
     </head>
     <body>
         <div>
-            <button onClick="subWindow('html/sign_in.html', 'sign_in')">sign in</button>
-            <button onClick="subWindow('html/sign_up.html', 'sign_up')">sign up</button>
+            <button id='js-signIn'>sign in</button>
+            <button id='js-signUp'>sign up</button>
             <br>
             <br>
             <a id="statusMessage">&nbsp;&nbsp;* easy to start ！</a>
@@ -69,15 +69,15 @@
             <input type="hidden" name="token" value="" size="36">
         </form>
         <br>
-        <input type="button" value="upload"/>
+        <input type="button" id='js-upload' value="upload"/>
         <br><br>
         <!-- <div class="gallery"> -->
         <div>
             <ul id="dispzone" class="image_list"></ul>
         </div>
         <br>
-        <button onClick="getFiles()">show images</button>
-        <button id="deleteButton" onClick="deleteFiles()">delete images</button>
+        <button id='js-showImages'>show images</button>
+        <button id="js-deleteImages">delete images</button>
         <br>
         <div id="infoMessage"></div>
     </body>

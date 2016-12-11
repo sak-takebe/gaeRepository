@@ -10,7 +10,7 @@
         src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
         window.onload = function() {
-            var id = window.opener.uid;
+            var id = window.opener.prop.uid;
             document.forms[0].elements['userId'].value = id;
         }
     </script>
@@ -29,8 +29,11 @@
                         size="36" value="" size="36"></td>
                 </tr>
             </table>
-            <br> ※ ID：auto Password：anything <br> <br> <br> <input
-                type="button" value="OK" onclick="sign('up')" />
+            <br> ※ ID：auto Password：anything
+            <br>
+            <br>
+            <br>
+            <input type="button" id='js-sign-up' value="OK"/>
         </form>
     </body>
 </html>
