@@ -8,27 +8,29 @@
             $('#js-sign-in').on('click', this.sign);
         },
         sign: function(e) {
+            var upIn;
+            var url;
             if (e.target.id === 'js-sign-up') {
                 // 新規登録の場合は確認ダイアログ表示
                 if (confirm("sign up ok ？")) {
-                    param_pass_to_openner('up');
+                    upIn = 'up';
+                    url = '/RegistUserInfo';
                 }
             } else {
-                param_pass_to_openner('in');
+                upIn = 'in';
+                url = '/Login';
             }
+            // サインアップまたはサインイン実行
+            excute(url, upIn);
         }
     };
-    var param_pass_to_openner = function(up_in) {
-        var _return;
-        if (up_in === 'up') {
-            _return = regist_or_login('/RegistUserInfo');
-        } else {
-            _return = regist_or_login('/Login');
-        }
+    var excute = function(url, upIn) {
+        var prop = window.opener.prop;
+        var _return = prop.ajax(url, [document.forms[0].userId.value,
+                                       document.forms[0].userPassword.value]);
         var obj = JSON.parse(_return);
 
         if (obj['message'] == 'success') {
-
             alert('success !');
             // ユーザIDを親画面に埋め込み
             window.opener.document.getElementById('statusMessage').innerHTML = "USER ID：" + obj['userid'];
@@ -37,15 +39,8 @@
             // 閉じる
             window.close();
         } else {
-            alert('fail to sign ' + up_in + ' ...');
+            alert('fail to sign ' + upIn + ' ...');
         }
-    };
-    var regist_or_login = function(transUrl) {
-        var params = [document.forms[0].userId.value,
-                      document.forms[0].userPassword.value];
-        var prop = window.opener.prop;
-        var _return = prop.ajax(transUrl, params);
-        return _return;
     };
     $(function() {
         // 処理開始
