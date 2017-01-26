@@ -1,6 +1,7 @@
 @CHARSET "UTF-8";
 
 body {
+    background: linear-gradient(-135deg, #2BC0E4, #EAECC6);
     width: 98%;
     height: 95%;
 }
@@ -21,6 +22,9 @@ ul.image_list li a.image_box {
     right: 0.5px;
     /* チェックボックス拡大 */
     transform: scale(2);
+}
+.image_box .thumbnail {
+    background: background: (0, 0, 0, 0);
 }
 #js-deleteImages {
     /* deleteボタンはデフォルト非表示 */

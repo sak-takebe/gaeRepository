@@ -42,7 +42,6 @@
         <form action="<%=uploadUrl%>" class="dropzone">
             <input type="hidden" name="token" value="" size="36">
         </form>
-        <br>
         <div class="css-button-upload">
             <input type="button" id='js-upload' value="upload"/>
         </div>

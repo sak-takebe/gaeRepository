@@ -178,7 +178,7 @@
   left: 0.5%;
   min-height: 150px;
   border: 2px solid rgba(0, 0, 0, 0.3);
-  background: white;
+  background: linear-gradient(-135deg, #2BC0E4, #EAECC6);
   padding: 20px 20px; }
   .dropzone.dz-clickable {
     cursor: pointer; }
@@ -212,7 +212,7 @@
     .dropzone .dz-preview.dz-file-preview .dz-details {
       opacity: 1; }
     .dropzone .dz-preview.dz-image-preview {
-      background: white; }
+      background: (0, 0, 0, 0); }
       .dropzone .dz-preview.dz-image-preview .dz-details {
         -webkit-transition: opacity 0.2s linear;
         -moz-transition: opacity 0.2s linear;
