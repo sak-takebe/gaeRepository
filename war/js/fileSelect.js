@@ -143,7 +143,7 @@ prop = {
                     document.forms[0].token.value = obj['token'];
                     if (obj['deleted'] == 'true') {
                         alert("success to deleted !");
-                        getFiles();
+                        fileSelect.showImages();
                     } else if (obj['deleted'] == 'false') {
                         var infoMessage = document.getElementById('infoMessage');
                         infoMessage.innerHTML = '<br> delete failed ...';
