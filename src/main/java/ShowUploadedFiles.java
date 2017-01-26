@@ -47,7 +47,7 @@ public class ShowUploadedFiles extends HttpServlet {
 
             for (Entity entity : pQuery.asIterable()) {
                 // ファイル名一覧を取得
-                filenameList.add(entity.getProperty("fairuMei").toString());
+                filenameList.add(String.valueOf(entity.getProperty("fairuMei")));
             }
             fileInfoBean.setFairuMei(filenameList);
             fileInfoBean.setDirectory(dir);

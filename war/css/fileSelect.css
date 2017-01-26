@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+body {
+    width: 98%;
+    height: 95%;
+}
+img {
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}
+ul.image_list li a.image_box {
+    /* position：相対位置  画像とチェックボックスを重ねるために指定 */
+    position: relative;
+}
+.image_box .checkbox {
+    /* チェックボックスの位置は絶対位置に指定 */
+    position: absolute;
+    /* チェックボックスは、親要素の右上からの位置 */
+    /* top: 5px; */
+    right: 0.5px;
+    /* チェックボックス拡大 */
+    transform: scale(2);
+}
+#js-deleteImages {
+    /* deleteボタンはデフォルト非表示 */
+    display: none;
+}
+.css-statusMessage {
+
+}
+.css-button-sign {
+    position: relative;
+    left: 0.5%;
+}
+.css-button-upload {
+    position: relative;
+    left: 0.5%;
+}
+.css-bottom-showDel {
+    position: relative;
+    left: 0.5%;
+}

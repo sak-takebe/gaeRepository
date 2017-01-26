@@ -93,7 +93,7 @@ public class Util {
 
         for (Entity entity : pQuery.asIterable()) {
             // ユーザIDを取得
-            db_userid = entity.getProperty("userid").toString();
+            db_userid = String.valueOf(entity.getProperty("userid"));
         }
 
         if (!db_userid.isEmpty()) {
@@ -121,8 +121,8 @@ public class Util {
         PreparedQuery pQuery = datastoreService.prepare(query);
 
         for (Entity entity : pQuery.asIterable()) {
-            db_userid = entity.getProperty("userid").toString();
-            db_userpassword = entity.getProperty("userpassword").toString();
+            db_userid = String.valueOf(entity.getProperty("userid"));
+            db_userpassword = String.valueOf(entity.getProperty("userpassword"));
         }
 
         if (!db_userid.isEmpty()) {
