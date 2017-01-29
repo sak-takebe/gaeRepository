@@ -3,7 +3,7 @@
 body {
     background: linear-gradient(-135deg, #2BC0E4, #EAECC6);
     width: 98%;
-    height: 95%;
+    min-height: 95%;
 }
 img {
     -moz-border-radius: 15px;
